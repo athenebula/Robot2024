@@ -35,14 +35,14 @@ public class RobotContainer {
     }
 
     public void configureButtonBindings() {
-        new JoystickButton(joystick1, OIConstants.kElevatorPIDRaiseButtonIdx)
-                .whileTrue(new ElevatorPIDCmd(elevatorSubsystem, ElevatorConstants.kRaisedPosition));
-        new JoystickButton(joystick1, OIConstants.kElevatorPIDLowerButtonIdx)
-                .whileTrue(new ElevatorPIDCmd(elevatorSubsystem, ElevatorConstants.kLoweredPosition));
-        new JoystickButton(joystick1, OIConstants.kElevatorJoystickRaiseButtonIdx)
-                .whileTrue(new ElevatorJoystickCmd(elevatorSubsystem, ElevatorConstants.kJoystickMaxSpeed));
-        new JoystickButton(joystick1, OIConstants.kElevatorJoystickLowerButtonIdx)
-                .whileTrue(new ElevatorJoystickCmd(elevatorSubsystem, -ElevatorConstants.kJoystickMaxSpeed));
+//        new JoystickButton(joystick1, OIConstants.kElevatorPIDRaiseButtonIdx)
+//                .whileTrue(new ElevatorPIDCmd(elevatorSubsystem, ElevatorConstants.kRaisedPosition));
+//        new JoystickButton(joystick1, OIConstants.kElevatorPIDLowerButtonIdx)
+//                .whileTrue(new ElevatorPIDCmd(elevatorSubsystem, ElevatorConstants.kLoweredPosition));
+//        new JoystickButton(joystick1, OIConstants.kElevatorJoystickRaiseButtonIdx)
+//               .whileTrue(new ElevatorJoystickCmd(elevatorSubsystem, ElevatorConstants.kJoystickMaxSpeed));
+//        new JoystickButton(joystick1, OIConstants.kElevatorJoystickLowerButtonIdx)
+//               .whileTrue(new ElevatorJoystickCmd(elevatorSubsystem, -ElevatorConstants.kJoystickMaxSpeed));
         new JoystickButton(joystick1, OIConstants.kIntakeCloseButtonIdx);
     }
 
@@ -56,4 +56,5 @@ public class RobotContainer {
                 )//
         );
     }
+    
 }

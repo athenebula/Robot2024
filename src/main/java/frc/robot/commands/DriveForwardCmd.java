@@ -15,6 +15,8 @@ public class DriveForwardCmd extends Command {
         addRequirements(driveSubsystem);
     }
 
+// https://docs.wpilib.org/en/stable/docs/software/kinematics-and-odometry/differential-drive-odometry.html
+
     @Override
     public void initialize() {
         DriveSubsystem.m_gyro.reset();
