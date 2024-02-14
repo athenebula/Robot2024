@@ -52,8 +52,8 @@ public final class Constants {
     }
 
     public static final class AutoConstants {
-        public static final double leftSlow = 0.24;
-        public static final double rightSlow = -0.24;
+        public static final double leftSlow = 0.05;
+        public static final double rightSlow = -0.01;
         public static final double rotateSpeed = 0.35;
         public static final double rotateSpeedSlow = 0.25;
     }
