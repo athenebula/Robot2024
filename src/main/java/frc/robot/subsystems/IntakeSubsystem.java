@@ -6,8 +6,8 @@ import frc.robot.Constants.IntakeConstants;
 
 public class IntakeSubsystem extends SubsystemBase {
 
-    private PWMSparkMax intakeLeftMotor = new PWMSparkMax(IntakeConstants.kLeftMotorPort);
-    private PWMSparkMax intakeRightMotor = new PWMSparkMax(IntakeConstants.kRightMotorPort);
+    private PWMSparkMax intakeTopMotor = new PWMSparkMax(IntakeConstants.kTopMotorPort);
+    private PWMSparkMax intakeBottomMotor = new PWMSparkMax(IntakeConstants.kBottomMotorPort);
 
     public IntakeSubsystem() {
     }
@@ -18,11 +18,11 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void setPosition(boolean open) {
         if (open) {
-            intakeLeftMotor.set(IntakeConstants.kOpenSpeed);
-            intakeRightMotor.set(IntakeConstants.kOpenSpeed);
+            intakeTopMotor.set(IntakeConstants.kOpenSpeed);
+            intakeBottomMotor.set(-IntakeConstants.kOpenSpeed);
         } else {
-            intakeLeftMotor.set(IntakeConstants.kCloseSpeed);
-            intakeRightMotor.set(IntakeConstants.kCloseSpeed);
+            intakeTopMotor.set(IntakeConstants.kCloseSpeed);
+            intakeBottomMotor.set(-IntakeConstants.kCloseSpeed);
         }
     }
 }

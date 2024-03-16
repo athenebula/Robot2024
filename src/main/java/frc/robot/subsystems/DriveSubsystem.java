@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.units.Distance;
 import edu.wpi.first.units.Measure;
 import edu.wpi.first.units.MutableMeasure;
@@ -9,6 +10,7 @@ import edu.wpi.first.units.Voltage;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotController;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -29,12 +31,16 @@ public class DriveSubsystem extends SubsystemBase {
 
     public static ADXRS450_Gyro m_gyro = new ADXRS450_Gyro(DriveConstants.kGyroPort);
 
-    private final Encoder leftEncoder = new Encoder(//
+    public final static Encoder leftEncoder = new Encoder(
             DriveConstants.kLeftEncoderChannelA,
             DriveConstants.kLeftEncoderChannelB);
-    private final Encoder rightEncoder = new Encoder(//
+    public final static Encoder rightEncoder = new Encoder(
             DriveConstants.kRightEncoderChannelA,
             DriveConstants.kRightEncoderChannelB);
+
+    // public static Servo servoCam = new Servo(6);
+
+    public SlewRateLimiter filter = new SlewRateLimiter(0.55);
 
     public double getEncoderMeters() {
         return (leftEncoder.get() + -rightEncoder.get()) / 2 * DriveConstants.kEncoderTick2Meter;
@@ -98,7 +104,7 @@ public class DriveSubsystem extends SubsystemBase {
     }
 
     public void tankDrive(double leftSpeed, double rightSpeed) {
-        differentialDrive.tankDrive(leftSpeed, rightSpeed);
+        differentialDrive.tankDrive(-filter.calculate(leftSpeed), -filter.calculate(rightSpeed));
     }
 
     @Override

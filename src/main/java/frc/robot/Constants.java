@@ -35,10 +35,17 @@ public final class Constants {
     }
 
     public static final class IntakeConstants {
-        public static final int kLeftMotorPort = 0;
-        public static final int kRightMotorPort = 1;
-        public static final double kOpenSpeed = -1;
-        public static final double kCloseSpeed = 1;
+        public static final int kTopMotorPort = 0;
+        public static final int kBottomMotorPort = 1;
+        public static final double kOpenSpeed = 1;
+        public static final double kCloseSpeed = -1;
+    }
+
+    public static final class ShooterConstants {
+        public static final int kTopMotorPort = 3;
+        public static final int kBottomMotorPort = 4;
+        public static final double kOpenSpeed = 0;
+        public static final double kCloseSpeed = -1;
     }
 
     public static final class OIConstants {
@@ -49,12 +56,13 @@ public final class Constants {
         public static final int kElevatorJoystickRaiseButtonIdx = 3;
         public static final int kElevatorJoystickLowerButtonIdx = 4;
         public static final int kIntakeCloseButtonIdx = 5;
+        public static final int kShooterCloseButtonIdx = 1;
     }
 
     public static final class AutoConstants {
-        public static final double leftSlow = 0.05;
-        public static final double rightSlow = -0.01;
-        public static final double rotateSpeed = 0.35;
-        public static final double rotateSpeedSlow = 0.25;
+        public static final double kLeftSlow = 0.3;
+        public static final double kRightSlow = 0.3;
+        public static final double kRotateSpeed = 0.35;
+        public static final double kRotateSpeedSlow = 0.25;
     }
 }

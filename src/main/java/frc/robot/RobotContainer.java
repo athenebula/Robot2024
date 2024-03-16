@@ -8,30 +8,33 @@ import frc.robot.commands.TankDriveCmd;
 import frc.robot.commands.ElevatorJoystickCmd;
 import frc.robot.commands.ElevatorPIDCmd;
 import frc.robot.commands.IntakeSetCmd;
+import frc.robot.commands.ShooterSetCmd;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class RobotContainer {
     public static DriveSubsystem driveSubsystem = new DriveSubsystem();
     private final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
     private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+    private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
     public static CommandXboxController xboxController = new CommandXboxController(OIConstants.kDriverJoystickPort);
     public static Joystick joystick1 = new Joystick(OIConstants.kDriverJoystickPort);
-    public static Trigger aButton = xboxController.a();
 
     public RobotContainer() {
         
         driveSubsystem.setDefaultCommand(new TankDriveCmd());
         elevatorSubsystem.setDefaultCommand(new ElevatorJoystickCmd(elevatorSubsystem, 0));
         intakeSubsystem.setDefaultCommand(new IntakeSetCmd(intakeSubsystem, true));
+        shooterSubsystem.setDefaultCommand(new ShooterSetCmd(shooterSubsystem, true));
+
     }
 
     public void configureButtonBindings() {
@@ -44,6 +47,7 @@ public class RobotContainer {
 //        new JoystickButton(joystick1, OIConstants.kElevatorJoystickLowerButtonIdx)
 //               .whileTrue(new ElevatorJoystickCmd(elevatorSubsystem, -ElevatorConstants.kJoystickMaxSpeed));
         new JoystickButton(joystick1, OIConstants.kIntakeCloseButtonIdx);
+        new JoystickButton(joystick1, OIConstants.kShooterCloseButtonIdx);
     }
 
     public Command getAutonomousCommand() {

@@ -19,48 +19,48 @@ public class DriveForwardCmd extends Command {
 
     @Override
     public void initialize() {
-        DriveSubsystem.m_gyro.reset();
+        DriveSubsystem.m_gyro.calibrate();
     }
 
     @Override
     public void execute() {
         if (Math.abs(DriveSubsystem.m_gyro.getAngle()) <= 3) {
-            driveSubsystem.driveBackLeftMotor.set(AutoConstants.leftSlow - (DriveSubsystem.m_gyro.getAngle()) / 15);
-            driveSubsystem.driveBackRightMotor.set(AutoConstants.rightSlow - (DriveSubsystem.m_gyro.getAngle()) / 15);
+            driveSubsystem.driveBackLeftMotor.set(AutoConstants.kLeftSlow - (DriveSubsystem.m_gyro.getAngle()) / 15);
+            driveSubsystem.driveBackRightMotor.set(AutoConstants.kRightSlow - (DriveSubsystem.m_gyro.getAngle()) / 15);
            } else if (Math.abs(DriveSubsystem.m_gyro.getAngle()) < 10) {
             if (DriveSubsystem.m_gyro.getAngle() > 0) {
-             driveSubsystem.driveBackLeftMotor.set(AutoConstants.leftSlow);
-             driveSubsystem.driveBackRightMotor.set(1.1 * AutoConstants.rightSlow);
+             driveSubsystem.driveBackLeftMotor.set(AutoConstants.kLeftSlow);
+             driveSubsystem.driveBackRightMotor.set(1.1 * AutoConstants.kRightSlow);
             } else if (DriveSubsystem.m_gyro.getAngle() < 0) {
-             driveSubsystem.driveBackLeftMotor.set(1.1 * AutoConstants.leftSlow);
-             driveSubsystem.driveBackRightMotor.set(AutoConstants.rightSlow);
+             driveSubsystem.driveBackLeftMotor.set(1.1 * AutoConstants.kLeftSlow);
+             driveSubsystem.driveBackRightMotor.set(AutoConstants.kRightSlow);
             }
            } else
             if (DriveSubsystem.m_gyro.getAngle() > 0) {
              while (DriveSubsystem.m_gyro.getAngle() > 10) {
-              driveSubsystem.driveBackLeftMotor.set(-AutoConstants.rotateSpeed);
-              driveSubsystem.driveBackRightMotor.set(-AutoConstants.rotateSpeed);
+              driveSubsystem.driveBackLeftMotor.set(-AutoConstants.kRotateSpeed);
+              driveSubsystem.driveBackRightMotor.set(-AutoConstants.kRotateSpeed);
              }
             while (DriveSubsystem.m_gyro.getAngle() > 0) {
-             driveSubsystem.driveBackLeftMotor.set(-AutoConstants.rotateSpeedSlow);
-             driveSubsystem.driveBackRightMotor.set(-AutoConstants.rotateSpeedSlow);
+             driveSubsystem.driveBackLeftMotor.set(-AutoConstants.kRotateSpeedSlow);
+             driveSubsystem.driveBackRightMotor.set(-AutoConstants.kRotateSpeedSlow);
             }
             while (DriveSubsystem.m_gyro.getAngle() < 0) {
-             driveSubsystem.driveBackLeftMotor.set(AutoConstants.rotateSpeedSlow);
-             driveSubsystem.driveBackRightMotor.set(AutoConstants.rotateSpeedSlow);
+             driveSubsystem.driveBackLeftMotor.set(AutoConstants.kRotateSpeedSlow);
+             driveSubsystem.driveBackRightMotor.set(AutoConstants.kRotateSpeedSlow);
             }
            } else {
             while (DriveSubsystem.m_gyro.getAngle() < -10) {
-             driveSubsystem.driveBackLeftMotor.set(AutoConstants.rotateSpeed);
-             driveSubsystem.driveBackRightMotor.set(AutoConstants.rotateSpeed);
+             driveSubsystem.driveBackLeftMotor.set(AutoConstants.kRotateSpeed);
+             driveSubsystem.driveBackRightMotor.set(AutoConstants.kRotateSpeed);
             }
             while (DriveSubsystem.m_gyro.getAngle() < 0) {
-             driveSubsystem.driveBackLeftMotor.set(AutoConstants.rotateSpeedSlow);
-             driveSubsystem.driveBackRightMotor.set(AutoConstants.rotateSpeedSlow);
+             driveSubsystem.driveBackLeftMotor.set(AutoConstants.kRotateSpeedSlow);
+             driveSubsystem.driveBackRightMotor.set(AutoConstants.kRotateSpeedSlow);
             }
             while (DriveSubsystem.m_gyro.getAngle() > 0) {
-             driveSubsystem.driveBackLeftMotor.set(-AutoConstants.rotateSpeedSlow);
-             driveSubsystem.driveBackRightMotor.set(-AutoConstants.rotateSpeedSlow);
+             driveSubsystem.driveBackLeftMotor.set(-AutoConstants.kRotateSpeedSlow);
+             driveSubsystem.driveBackRightMotor.set(-AutoConstants.kRotateSpeedSlow);
             }
            }
     }
