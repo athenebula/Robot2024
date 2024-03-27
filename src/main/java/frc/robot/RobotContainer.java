@@ -1,16 +1,15 @@
 package frc.robot;
 
+import frc.robot.commands.ClimberSetCmd;
 import frc.robot.commands.DriveForwardCmd;
 import frc.robot.Constants.DriveConstants;
-import frc.robot.Constants.ElevatorConstants;
+import frc.robot.Constants.ClimberConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.TankDriveCmd;
-import frc.robot.commands.ElevatorJoystickCmd;
-import frc.robot.commands.ElevatorPIDCmd;
 import frc.robot.commands.IntakeSetCmd;
 import frc.robot.commands.ShooterSetCmd;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.ElevatorSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
@@ -22,7 +21,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 public class RobotContainer {
     public static DriveSubsystem driveSubsystem = new DriveSubsystem();
-    private final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
+    private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
     private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
     private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
     public static CommandXboxController xboxController = new CommandXboxController(OIConstants.kDriverJoystickPort);
@@ -31,7 +30,7 @@ public class RobotContainer {
     public RobotContainer() {
         
         driveSubsystem.setDefaultCommand(new TankDriveCmd());
-        elevatorSubsystem.setDefaultCommand(new ElevatorJoystickCmd(elevatorSubsystem, 0));
+        climberSubsystem.setDefaultCommand(new ClimberSetCmd(climberSubsystem, true));
         intakeSubsystem.setDefaultCommand(new IntakeSetCmd(intakeSubsystem, true));
         shooterSubsystem.setDefaultCommand(new ShooterSetCmd(shooterSubsystem, true));
 
@@ -47,7 +46,8 @@ public class RobotContainer {
 //        new JoystickButton(joystick1, OIConstants.kElevatorJoystickLowerButtonIdx)
 //               .whileTrue(new ElevatorJoystickCmd(elevatorSubsystem, -ElevatorConstants.kJoystickMaxSpeed));
         new JoystickButton(joystick1, OIConstants.kIntakeCloseButtonIdx);
-        new JoystickButton(joystick1, OIConstants.kShooterCloseButtonIdx);
+        new JoystickButton(joystick1, OIConstants.kSpeakerButtonIdx);
+        new JoystickButton(joystick1, OIConstants.kAmpButtonIdx);
     }
 
     public Command getAutonomousCommand() {
@@ -55,8 +55,7 @@ public class RobotContainer {
         return new SequentialCommandGroup( //
                 new DriveForwardCmd(driveSubsystem, DriveConstants.kAutoDriveForwardDistance), //
                 new ParallelCommandGroup( //
-                        new IntakeSetCmd(intakeSubsystem, false), //
-                        new ElevatorPIDCmd(elevatorSubsystem, ElevatorConstants.kRaisedPosition) //
+                        new IntakeSetCmd(intakeSubsystem, false)//
                 )//
         );
     }

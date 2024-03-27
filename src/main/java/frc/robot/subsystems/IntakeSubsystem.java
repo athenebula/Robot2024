@@ -18,11 +18,11 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void setPosition(boolean open) {
         if (open) {
-            intakeTopMotor.set(IntakeConstants.kOpenSpeed);
-            intakeBottomMotor.set(-IntakeConstants.kOpenSpeed);
+            intakeTopMotor.set(IntakeConstants.kTopOpenSpeed);
+            intakeBottomMotor.set(-IntakeConstants.kBottomOpenSpeed);
         } else {
-            intakeTopMotor.set(IntakeConstants.kCloseSpeed);
-            intakeBottomMotor.set(-IntakeConstants.kCloseSpeed);
+            intakeTopMotor.set(IntakeConstants.kTopCloseSpeed);
+            intakeBottomMotor.set(-IntakeConstants.kBottomCloseSpeed);
         }
     }
 }

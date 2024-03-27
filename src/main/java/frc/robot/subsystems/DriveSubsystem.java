@@ -38,7 +38,7 @@ public class DriveSubsystem extends SubsystemBase {
             DriveConstants.kRightEncoderChannelA,
             DriveConstants.kRightEncoderChannelB);
 
-    // public static Servo servoCam = new Servo(6);
+    public static Servo servoCam = new Servo(7);
 
     public SlewRateLimiter filter = new SlewRateLimiter(0.55);
 
@@ -116,12 +116,7 @@ public class DriveSubsystem extends SubsystemBase {
         return m_sysIdRoutine.quasistatic(direction);
       }
     
-      /**
-       * Returns a command that will execute a dynamic test in the given direction.
-       *
-       * @param direction The direction (forward or reverse) to run the test in
-       */
-      public Command sysIdDynamic(SysIdRoutine.Direction direction) {
+    public Command sysIdDynamic(SysIdRoutine.Direction direction) {
         return m_sysIdRoutine.dynamic(direction);
       }
 

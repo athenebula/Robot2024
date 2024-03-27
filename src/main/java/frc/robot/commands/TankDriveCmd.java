@@ -13,24 +13,21 @@ public class TankDriveCmd extends Command {
 
     @Override
     public void initialize() {
-        System.out.println("y");
         DriveSubsystem.m_gyro.calibrate();
     }
 
     @Override
     public void execute() {
 
-        System.out.println("x");
         double leftSpeed = RobotContainer.xboxController.getLeftY();
         double rightSpeed = RobotContainer.xboxController.getRightY();
 
         RobotContainer.driveSubsystem.tankDrive(leftSpeed, rightSpeed);
 
-        System.out.println("hi");
         // System.out.println(Math.round(DriveSubsystem.m_gyro.getAngle()));
         // System.out.println(Math.round(DriveSubsystem.leftEncoder.get()));
 
-        //DriveSubsystem.servoCam.set(0.5 - DriveSubsystem.m_gyro.getAngle()/175);
+        DriveSubsystem.servoCam.set(0.5 - DriveSubsystem.m_gyro.getAngle()/175);
 
     // RobotContainer.xboxController
     //     .a()

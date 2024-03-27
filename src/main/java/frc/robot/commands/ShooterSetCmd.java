@@ -21,10 +21,14 @@ public class ShooterSetCmd extends Command {
 
     @Override
     public void execute() {
-        if(RobotContainer.joystick1.getRawButton(OIConstants.kShooterCloseButtonIdx)) {
-            shooterSubsystem.setPosition(false);
+        if(RobotContainer.joystick1.getRawButton(OIConstants.kSpeakerButtonIdx)) {
+            shooterSubsystem.setPosition(false, true);
         } else {
-            shooterSubsystem.setPosition(open);
+            if(RobotContainer.joystick1.getRawButton(OIConstants.kAmpButtonIdx)) {
+                shooterSubsystem.setPosition(false, false);
+            } else {
+                shooterSubsystem.setPosition(open, false);
+        }
         }
     }
 
