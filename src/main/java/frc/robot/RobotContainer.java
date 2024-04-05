@@ -2,8 +2,6 @@ package frc.robot;
 
 import frc.robot.commands.ClimberSetCmd;
 import frc.robot.commands.DriveForwardCmd;
-import frc.robot.Constants.DriveConstants;
-import frc.robot.Constants.ClimberConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.TankDriveCmd;
 import frc.robot.commands.IntakeSetCmd;
@@ -30,33 +28,30 @@ public class RobotContainer {
     public RobotContainer() {
         
         driveSubsystem.setDefaultCommand(new TankDriveCmd());
-        climberSubsystem.setDefaultCommand(new ClimberSetCmd(climberSubsystem, true));
-        intakeSubsystem.setDefaultCommand(new IntakeSetCmd(intakeSubsystem, true));
-        shooterSubsystem.setDefaultCommand(new ShooterSetCmd(shooterSubsystem, true));
+        climberSubsystem.setDefaultCommand(new ClimberSetCmd(climberSubsystem, false, false));
+        intakeSubsystem.setDefaultCommand(new IntakeSetCmd(intakeSubsystem, false));
+        shooterSubsystem.setDefaultCommand(new ShooterSetCmd(shooterSubsystem, false, false));
 
     }
 
     public void configureButtonBindings() {
-//        new JoystickButton(joystick1, OIConstants.kElevatorPIDRaiseButtonIdx)
-//                .whileTrue(new ElevatorPIDCmd(elevatorSubsystem, ElevatorConstants.kRaisedPosition));
-//        new JoystickButton(joystick1, OIConstants.kElevatorPIDLowerButtonIdx)
-//                .whileTrue(new ElevatorPIDCmd(elevatorSubsystem, ElevatorConstants.kLoweredPosition));
-//        new JoystickButton(joystick1, OIConstants.kElevatorJoystickRaiseButtonIdx)
-//               .whileTrue(new ElevatorJoystickCmd(elevatorSubsystem, ElevatorConstants.kJoystickMaxSpeed));
-//        new JoystickButton(joystick1, OIConstants.kElevatorJoystickLowerButtonIdx)
-//               .whileTrue(new ElevatorJoystickCmd(elevatorSubsystem, -ElevatorConstants.kJoystickMaxSpeed));
         new JoystickButton(joystick1, OIConstants.kIntakeCloseButtonIdx);
         new JoystickButton(joystick1, OIConstants.kSpeakerButtonIdx);
         new JoystickButton(joystick1, OIConstants.kAmpButtonIdx);
+        new JoystickButton(joystick1, OIConstants.kClimberExtendButtonIdx);
+        new JoystickButton(joystick1, OIConstants.kClimberRetractButtonIdx);
+        new JoystickButton(joystick1, OIConstants.kIndexButtonIdx);
     }
 
     public Command getAutonomousCommand() {
 
-        return new SequentialCommandGroup( //
-                new DriveForwardCmd(driveSubsystem, DriveConstants.kAutoDriveForwardDistance), //
-                new ParallelCommandGroup( //
-                        new IntakeSetCmd(intakeSubsystem, false)//
-                )//
+        return new SequentialCommandGroup(
+                new DriveForwardCmd(driveSubsystem),
+                new ParallelCommandGroup(
+                        new IntakeSetCmd(intakeSubsystem, true),
+                        new ClimberSetCmd(climberSubsystem, false, false),
+                        new ShooterSetCmd(shooterSubsystem, false, false)
+                )
         );
     }
     

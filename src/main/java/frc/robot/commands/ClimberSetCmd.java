@@ -8,10 +8,12 @@ import frc.robot.subsystems.ClimberSubsystem;
 public class ClimberSetCmd extends Command {
 
     private final ClimberSubsystem climberSubsystem;
-    public final boolean open;
+    public final boolean extend;
+    public final boolean retract;
 
-    public ClimberSetCmd(ClimberSubsystem climberSubsystem, boolean open) {
-        this.open = open;
+    public ClimberSetCmd(ClimberSubsystem climberSubsystem, boolean extend, boolean retract) {
+        this.extend = extend;
+        this.retract = retract;
         this.climberSubsystem = climberSubsystem;
         addRequirements(climberSubsystem);
     }
@@ -22,12 +24,12 @@ public class ClimberSetCmd extends Command {
     @Override
     public void execute() {
         if(RobotContainer.joystick1.getRawButton(OIConstants.kClimberExtendButtonIdx)) {
-            climberSubsystem.setPosition(false, true);
+            climberSubsystem.setPosition(true, false);
         } else {
             if(RobotContainer.joystick1.getRawButton(OIConstants.kClimberRetractButtonIdx)) {
-                climberSubsystem.setPosition(false, false);
+                climberSubsystem.setPosition(false, true);
             } else {
-                climberSubsystem.setPosition(open, false);
+                climberSubsystem.setPosition(false, false);
         }
         }
     }

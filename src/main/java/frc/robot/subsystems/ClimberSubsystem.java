@@ -1,9 +1,10 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ClimberConstants;
-import frc.robot.Constants.IntakeConstants;
 
 public class ClimberSubsystem extends SubsystemBase {
 
@@ -17,18 +18,18 @@ public class ClimberSubsystem extends SubsystemBase {
     public void periodic() {
     }
 
-    public void setPosition(boolean open, boolean extend) {
-        if (open) {
-            leftClimberMotor.set(0);
-            rightClimberMotor.set(0);
-        } else {
-            if (extend) {
-                leftClimberMotor.set(ClimberConstants.kExtendSpeed);
-                rightClimberMotor.set(ClimberConstants.kExtendSpeed);
-            } else {
-                leftClimberMotor.set(ClimberConstants.kRetractSpeed);
-                rightClimberMotor.set(ClimberConstants.kRetractSpeed);
+    public void setPosition(boolean extend, boolean retract) {
+        if (extend) {
+            leftClimberMotor.set(ControlMode.PercentOutput, ClimberConstants.kExtendSpeed);
+            rightClimberMotor.set(ControlMode.PercentOutput, ClimberConstants.kExtendSpeed);
+        } else 
+            if (retract) {
+                leftClimberMotor.set(ControlMode.PercentOutput, ClimberConstants.kRetractSpeed);
+                rightClimberMotor.set(ControlMode.PercentOutput, ClimberConstants.kRetractSpeed);
             }
-        }
+            else {
+                leftClimberMotor.set(ControlMode.PercentOutput, 0);
+                rightClimberMotor.set(ControlMode.PercentOutput, 0);
+            }
     }
 }

@@ -24,7 +24,7 @@ public class IntakeSetCmd extends Command {
         if(RobotContainer.joystick1.getRawButton(OIConstants.kIntakeCloseButtonIdx)) {
             intakeSubsystem.setPosition(false);
         } else {
-            intakeSubsystem.setPosition(open);
+            intakeSubsystem.setPosition(true);
         }
     }
 

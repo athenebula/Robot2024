@@ -7,7 +7,7 @@ import frc.robot.Constants.IntakeConstants;
 public class IntakeSubsystem extends SubsystemBase {
 
     private PWMSparkMax intakeTopMotor = new PWMSparkMax(IntakeConstants.kTopMotorPort);
-    private PWMSparkMax intakeBottomMotor = new PWMSparkMax(IntakeConstants.kBottomMotorPort);
+    public PWMSparkMax intakeBottomMotor = new PWMSparkMax(IntakeConstants.kBottomMotorPort);
 
     public IntakeSubsystem() {
     }
