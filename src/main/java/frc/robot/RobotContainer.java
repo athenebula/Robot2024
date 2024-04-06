@@ -3,8 +3,8 @@ package frc.robot;
 import frc.robot.commands.ClimberSetCmd;
 import frc.robot.commands.DriveForwardCmd;
 import frc.robot.Constants.OIConstants;
-import frc.robot.commands.TankDriveCmd;
 import frc.robot.commands.IntakeSetCmd;
+import frc.robot.commands.RocketDriveCmd;
 import frc.robot.commands.ShooterSetCmd;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
@@ -27,7 +27,7 @@ public class RobotContainer {
 
     public RobotContainer() {
         
-        driveSubsystem.setDefaultCommand(new TankDriveCmd());
+        driveSubsystem.setDefaultCommand(new RocketDriveCmd(driveSubsystem));
         climberSubsystem.setDefaultCommand(new ClimberSetCmd(climberSubsystem, false, false));
         intakeSubsystem.setDefaultCommand(new IntakeSetCmd(intakeSubsystem, false));
         shooterSubsystem.setDefaultCommand(new ShooterSetCmd(shooterSubsystem, false, false));
