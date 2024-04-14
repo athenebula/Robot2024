@@ -16,8 +16,8 @@ public class RocketDriveCmd extends Command {
     @Override
     public void execute() {
         
-        double trigger = RobotContainer.xboxController.getRightTriggerAxis() - RobotContainer.xboxController.getLeftTriggerAxis();
-        double speed = trigger * (1 - 2 * (Math.abs(RobotContainer.xboxController.getLeftX())));
+        double trigger = RobotContainer.xboxController.getLeftTriggerAxis() - RobotContainer.xboxController.getRightTriggerAxis();
+        double speed = trigger * (-(Math.abs(RobotContainer.xboxController.getLeftX()))) + 0.2;
 
             if(RobotContainer.xboxController.getLeftX() > 0.1) {
                 DriveSubsystem.driveBackLeftMotor.set(speed);

@@ -8,8 +8,8 @@ import frc.robot.Constants.ClimberConstants;
 
 public class ClimberSubsystem extends SubsystemBase {
 
-    private WPI_TalonSRX leftClimberMotor = new WPI_TalonSRX(ClimberConstants.kLeftMotorPort);
-    private WPI_TalonSRX rightClimberMotor = new WPI_TalonSRX(ClimberConstants.kRightMotorPort);
+    public WPI_TalonSRX leftClimberMotor = new WPI_TalonSRX(ClimberConstants.kLeftMotorPort);
+    public WPI_TalonSRX rightClimberMotor = new WPI_TalonSRX(ClimberConstants.kRightMotorPort);
 
     public ClimberSubsystem() {
     }

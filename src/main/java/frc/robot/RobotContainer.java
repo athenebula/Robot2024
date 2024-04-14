@@ -48,7 +48,7 @@ public class RobotContainer {
         return new SequentialCommandGroup(
                 new DriveForwardCmd(driveSubsystem),
                 new ParallelCommandGroup(
-                        new IntakeSetCmd(intakeSubsystem, true),
+                        new IntakeSetCmd(intakeSubsystem, false),
                         new ClimberSetCmd(climberSubsystem, false, false),
                         new ShooterSetCmd(shooterSubsystem, false, false)
                 )

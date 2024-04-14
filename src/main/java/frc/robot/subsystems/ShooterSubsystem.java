@@ -13,7 +13,6 @@ public class ShooterSubsystem extends SubsystemBase {
     public WPI_VictorSPX shooterLeft2Motor = new WPI_VictorSPX(ShooterConstants.kLeft2MotorPort);
     public WPI_TalonSRX shooterRightMotor = new WPI_TalonSRX(ShooterConstants.kRightMotorPort);
 
-
     public ShooterSubsystem() {
     }
 

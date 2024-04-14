@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants.ClimberConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.ClimberSubsystem;
@@ -25,12 +26,22 @@ public class ClimberSetCmd extends Command {
     public void execute() {
         if(RobotContainer.joystick1.getRawButton(OIConstants.kClimberExtendButtonIdx)) {
             climberSubsystem.setPosition(true, false);
-        } else {
+        } 
+
+        else {
             if(RobotContainer.joystick1.getRawButton(OIConstants.kClimberRetractButtonIdx)) {
                 climberSubsystem.setPosition(false, true);
-            } else {
-                climberSubsystem.setPosition(false, false);
-        }
+            } 
+            else {
+                if(Math.abs(RobotContainer.xboxController.getRightY()) > 0.1) {
+                    climberSubsystem.setPosition(false, false);
+                    climberSubsystem.leftClimberMotor.set(ClimberConstants.kExtendSpeed * RobotContainer.xboxController.getRightY());
+                    climberSubsystem.rightClimberMotor.set(ClimberConstants.kExtendSpeed * RobotContainer.xboxController.getRightY());
+                }
+                else {
+                    climberSubsystem.setPosition(false, false);
+                }
+            }
         }
     }
 
